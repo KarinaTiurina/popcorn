@@ -1,4 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="text-center">
+  <h1><%= @user.name %></h1>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', user_path %>
+  <%= image_tag user_avatar(@user) %>
+
+  <% if @user == current_user %>
+      <p class="buffer-top"><%= link_to 'Редактировать профиль',
+                                        edit_user_path(@user), class: 'btn btn-default' %></p>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Что смотрел:</h3>
+  </div>
+</div>
