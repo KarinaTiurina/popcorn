@@ -1,20 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="buffer-both">
+  <%= link_to 'Добавить фильмы', root_path, class: 'btn btn-success' %>
+</div>
 
-<h1>Films</h1>
+<h1>Топ-10</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row buffer-bottom">
+  <%= render partial: 'films/film', collection: @films %>
+</div>
 
-  <tbody>
-    <% @films.each do |film| %>
-      <tr>
-        <td><%= link_to 'Show', film %></td></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
