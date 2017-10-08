@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :films, only: [:show, :index]
 
   resources :users, only: [:show, :edit, :update]
+
+  get '/get_films', to: 'films#get_films'
 end
