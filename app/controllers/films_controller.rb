@@ -33,7 +33,7 @@ class FilmsController < ApplicationController
   end
 
   def film_params
-    params.require(:event).permit(:title, :director, :year)
+    params.require(:event).permit(:title, :director, :year, :poster)
   end
 
   def parse_films(url)
