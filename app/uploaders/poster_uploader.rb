@@ -24,7 +24,7 @@ class PosterUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
 
-  process resize_to_fill: [400, 400]
+  process resize_to_fill: [235, 290]
 
   # process scale: [200, 300]
   #

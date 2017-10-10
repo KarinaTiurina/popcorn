@@ -16,7 +16,7 @@ class FilmsController < ApplicationController
     films = parse_films(url)
 
     films.each do |film|
-      unless Film.where(title: film.title).present?
+      if film.title.present? && !Film.where(title: film.title).present?
         film.save
       end
     end
@@ -39,12 +39,17 @@ class FilmsController < ApplicationController
   def parse_films(url)
     doc = Nokogiri::HTML(open(url))
 
-    return films = doc.css('table#itemList .news').map do |node|
-      Film.new(
-        title: node.css('div a').first.text,
-        director: node.css('.gray_text a').first.text,
-        year: node.css('div span').first.text.gsub(/.*\(/, '').gsub(/\).*/, '')
+    return films = doc.css('table#itemList tr').map do |node|
+      film = Film.new(
+        title: node.css('.news div a').first.text,
+        director: node.css('.news .gray_text a').first.text,
+        year: node.css('.news div span').first.text.gsub(/.*\(/, '').gsub(/\).*/, '')
       )
+      poster_url = node.css('.poster img')[0]["src"].gsub(/\/images\/spacer.gif/, '') +
+        node.css('.poster img')[0]["title"]
+      poster_url.gsub!(/sm_film\//, 'film_iphone/iphone360_')
+      film.remote_poster_url = poster_url
+      film
     end
   end
 end
