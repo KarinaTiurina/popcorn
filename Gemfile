@@ -47,3 +47,4 @@ gem 'nokogiri'
 
 gem 'carrierwave'
 gem 'rmagick'
+gem 'fog-aws'
