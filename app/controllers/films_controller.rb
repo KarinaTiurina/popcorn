@@ -4,9 +4,13 @@ class FilmsController < ApplicationController
 
   def index
     @is_search = false
-    if params[:query]
-     @film_to_watch = Film.search(params[:query]).sample
-     @is_search = true
+    if params.include?(:query)
+      if params[:query].present?
+        @film_to_watch = Film.search(params[:query]).sample
+      else
+        @film_to_watch = Film.all.sample
+      end
+      @is_search = true
     end
 
     @films = Film.all
