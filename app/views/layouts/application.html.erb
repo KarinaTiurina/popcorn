@@ -14,24 +14,21 @@
   <body>
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+        <div class="col-md-10 col-md-offset-1">
 
-        <%= link_to 'Popcorn', root_path, class: 'navbar-brand' %>
+          <%= link_to 'Popcorn', root_path, class: 'navbar-brand' %>
 
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
-              <li><%= link_to 'Профиль', current_user %></li>
-              <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
-            <% else %>
-              <li><%= link_to 'Войти', new_user_session_path %></li>
-              <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
-            <% end %>
-          </ul>
+          <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <% if user_signed_in? %>
+                <li><%= link_to 'Профиль', current_user %></li>
+                <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
+              <% else %>
+                <li><%= link_to 'Войти', new_user_session_path %></li>
+                <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -39,12 +36,10 @@
     <div class="content">
       <div class="container">
         <div class="row">
-          <div class="col-lg-9">
+          <div class="col-md-10 col-md-offset-1">
             <%= bootstrap_flash %>
 
             <%= yield %>
-          </div>
-          <div class="col-lg-3">
           </div>
         </div>
       </div>
