@@ -10,10 +10,12 @@ class FilmsController < ApplicationController
   end
 
   def get_films
-    url = 'https://www.kinopoisk.ru/top/lists/1/'
+    url = 'https://www.kinopoisk.ru/top/lists/1/filtr/all/sort/order/page/'
 
-
-    films = parse_films(url)
+    films = []
+    1.upto(4) do |i|
+      films += parse_films(url + i.to_s)
+    end
 
     films.each do |film|
       if film.title.present? && !Film.where(title: film.title).present?
