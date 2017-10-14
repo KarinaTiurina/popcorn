@@ -32,3 +32,21 @@
 	flex: 1;
 	min-height: 480px;
 }
+
+.buffer-top {
+    margin-top: 20px;
+}
+
+.buffer-bottom {
+    margin-bottom: 20px;
+}
+
+.buffer-both {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.user-avatar .img-icon {
+    margin-top: -2px;
+    height: 20px;
+}
