@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.2'
 
 gem 'pg'
+gem 'pg_search'
 
 group :production do
   # gem 'pg'

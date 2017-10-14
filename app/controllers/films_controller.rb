@@ -3,6 +3,12 @@ class FilmsController < ApplicationController
   before_action :set_film, only: [:show]
 
   def index
+    @is_search = false
+    if params[:query]
+     @film_to_watch = Film.search(params[:query]).sample
+     @is_search = true
+    end
+
     @films = Film.all
   end
 
