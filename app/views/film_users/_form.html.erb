@@ -1,0 +1,6 @@
+<%= form_for [@film, film_user] do |f| %>
+    <%= render partial: 'partials/form_errors', locals: {model: film_user} %>
+    <div class="actions">
+      <%= f.submit 'уже смотрел', class: 'btn btn-primary' %>
+    </div>
+<% end %>

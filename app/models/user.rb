@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
   has_many :comments
 
+  has_many :film_users, dependent: :destroy
+  has_many :films, through: :film_users, source: :film
+
   before_validation :set_name, on: :create
 
   mount_uploader :avatar, AvatarUploader

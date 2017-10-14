@@ -5,6 +5,9 @@ class Film < ApplicationRecord
 
   has_many :comments
 
+  has_many :film_users, dependent: :destroy
+  has_many :users, through: :film_users, source: :user
+
   validates :title, presence: true
   validates :director, presence: true
   validates :year, presence: true

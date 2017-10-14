@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :films, only: [:show, :index] do
     resources :comments, only: [:create, :destroy]
+    resources :film_users, only: [:create]
   end
 
   resources :users, only: [:show, :edit, :update]
