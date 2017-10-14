@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 35 }
 
+  has_many :comments
+
   before_validation :set_name, on: :create
 
   mount_uploader :avatar, AvatarUploader

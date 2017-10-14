@@ -9,3 +9,16 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-8">
+    <div class="film-comments buffer-top">
+
+    <%= render partial: 'comments/form', locals: {comment: @new_comment || @film.comments.build} %>
+
+      <div class="buffer-both">
+        <%= render partial: 'comments/comment', collection: @film.comments.except(@new_comment) %>
+      </div>
+    </div>
+  </div>
+</div>
+

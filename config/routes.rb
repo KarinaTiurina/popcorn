@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root 'films#index'
 
-  resources :films, only: [:show, :index]
+  resources :films, only: [:show, :index] do
+    resources :comments, only: [:create, :destroy]
+  end
 
   resources :users, only: [:show, :edit, :update]
 

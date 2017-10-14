@@ -17,6 +17,7 @@ class FilmsController < ApplicationController
   end
 
   def show
+    @new_comment = @film.comments.build(params[:comment])
   end
 
   def get_films

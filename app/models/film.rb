@@ -3,6 +3,8 @@ class Film < ApplicationRecord
   pg_search_scope :search, against: [:title, :director, :year],
                   using: {tsearch: {dictionary: "russian"}}
 
+  has_many :comments
+
   validates :title, presence: true
   validates :director, presence: true
   validates :year, presence: true
