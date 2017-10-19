@@ -30,9 +30,19 @@ class FilmsController < ApplicationController
     end
 
     films.each do |film|
-      if film.valid?
-        film.save
+      film_new = Film.where(kinopoisk_id: film[:kinopoisk_id]).first
+
+      unless film_new.present?
+        film_new = Film.new
+        film_new[:kinopoisk_id] = film[:kinopoisk_id]
       end
+
+      film_new.title = film[:title]
+      film_new.director = film[:director]
+      film_new.year = film[:year]
+      film_new.remote_poster_url = film[:poster_url]
+
+      film_new.save
     end
 
     @films_count = films.count
@@ -47,23 +57,28 @@ class FilmsController < ApplicationController
   end
 
   def film_params
-    params.require(:event).permit(:title, :director, :year, :poster)
+    params.require(:event).permit(:title, :director, :year, :poster, :kinopoisk_id)
   end
 
   def parse_films(url)
     doc = Nokogiri::HTML(open(url))
 
     return films = doc.css('table#itemList tr').map do |node|
-      film = Film.new(
-        kinopoisk_id: node["id"].gsub(/tr_/, ''),
-        title: node.css('.news div a').first.text,
-        director: node.css('.news .gray_text a').first.text,
-        year: node.css('.news div span').first.text.gsub(/.*\(/, '').gsub(/\).*/, '')
-      )
+      kinopoisk_id = node["id"].gsub(/tr_/, '')
+      title = node.css('.news div a').first.text
+      year = node.css('.news div span').first.text.gsub(/.*\(/, '').gsub(/\).*/, '')
+      director = node.css('.news .gray_text a').first.text
+
+      film = {
+        kinopoisk_id: kinopoisk_id,
+        title: title,
+        director: director,
+        year: year
+      }
       poster_url = node.css('.poster img')[0]["src"].gsub(/\/images\/spacer.gif/, '') +
         node.css('.poster img')[0]["title"]
       poster_url.gsub!(/sm_film\//, 'film_iphone/iphone360_')
-      film.remote_poster_url = poster_url
+      film[:poster_url] = poster_url
       film
     end
   end
