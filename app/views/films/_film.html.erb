@@ -1,6 +1,6 @@
 <div class="col-sm-6 col-md-4 film-card">
   <h3><%= link_to film.title, film_path(film) %></h3>
-  <p><%= image_tag film_poster(film) %></p>
+  <p><%= link_to image_tag(film_poster(film)), film_path(film) %></p>
   <p>Режиссер: <%= film.director %></p>
   <p>Год: <%= film.year %></p>
 </div>

@@ -40,6 +40,8 @@ class FilmsController < ApplicationController
       film_new.title = film[:title]
       film_new.director = film[:director]
       film_new.year = film[:year]
+      film_new.genre = film[:genre]
+
       film_new.remote_poster_url = film[:poster_url]
 
       film_new.save
@@ -68,12 +70,14 @@ class FilmsController < ApplicationController
       title = node.css('.news div a').first.text
       year = node.css('.news div span').first.text.gsub(/.*\(/, '').gsub(/\).*/, '')
       director = node.css('.news .gray_text a').first.text
+      genre = node.css('.news .gray_text').first.text.gsub(/[\n .]/, '').gsub(/.*\(/, '').gsub(/\).*/, '')
 
       film = {
         kinopoisk_id: kinopoisk_id,
         title: title,
         director: director,
-        year: year
+        year: year,
+        genre: genre
       }
       poster_url = node.css('.poster img')[0]["src"].gsub(/\/images\/spacer.gif/, '') +
         node.css('.poster img')[0]["title"]

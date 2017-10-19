@@ -13,6 +13,7 @@ class Film < ApplicationRecord
   validates :year, presence: true
   validates :kinopoisk_id, presence: true
   validates :kinopoisk_id, uniqueness: true
+  validates :genre, presence: true
 
 
   mount_uploader :poster, PosterUploader
