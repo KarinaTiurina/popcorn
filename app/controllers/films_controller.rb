@@ -30,7 +30,7 @@ class FilmsController < ApplicationController
     end
 
     films.each do |film|
-      if film.title.present? && !Film.where(title: film.title).present?
+      if film.valid?
         film.save
       end
     end
@@ -55,6 +55,7 @@ class FilmsController < ApplicationController
 
     return films = doc.css('table#itemList tr').map do |node|
       film = Film.new(
+        kinopoisk_id: node["id"].gsub(/tr_/, ''),
         title: node.css('.news div a').first.text,
         director: node.css('.news .gray_text a').first.text,
         year: node.css('.news div span').first.text.gsub(/.*\(/, '').gsub(/\).*/, '')
