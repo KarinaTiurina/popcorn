@@ -3,7 +3,7 @@ class Film < ApplicationRecord
   pg_search_scope :search, against: [:title, :director, :year],
                   using: {tsearch: {dictionary: "russian"}}
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_many :film_users, dependent: :destroy
   has_many :users, through: :film_users, source: :user

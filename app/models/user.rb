@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 35 }
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_many :film_users, dependent: :destroy
   has_many :films, through: :film_users, source: :film
