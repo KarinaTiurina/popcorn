@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  include Pundit
+
   helper_method :current_user_can_edit?
 
   def current_user_can_edit?(model)

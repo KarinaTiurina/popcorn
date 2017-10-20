@@ -146,6 +146,8 @@ GEM
       activesupport (>= 4.2)
       arel (>= 6)
     puma (3.10.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.3)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
@@ -238,6 +240,7 @@ DEPENDENCIES
   pg
   pg_search
   puma (~> 3.7)
+  pundit (~> 1.1)
   rails (~> 5.1.4)
   rails-i18n
   rmagick

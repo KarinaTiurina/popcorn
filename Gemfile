@@ -56,3 +56,5 @@ gem 'nokogiri'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog-aws'
+
+gem 'pundit', '~> 1.1'
