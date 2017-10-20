@@ -3,16 +3,6 @@ class FilmsController < ApplicationController
   before_action :set_film, only: [:show]
 
   def index
-    @is_search = false
-    if params.include?(:query)
-      if params[:query].present?
-        @film_to_watch = Film.search(params[:query]).sample
-      else
-        @film_to_watch = Film.all.sample
-      end
-      @is_search = true
-    end
-
     @films = Film.all
   end
 
@@ -60,6 +50,21 @@ class FilmsController < ApplicationController
 
   def film_params
     params.require(:event).permit(:title, :director, :year, :poster, :kinopoisk_id)
+  end
+
+  def genres
+    all_genres = []
+
+    films = Film.all
+
+    films.each do |film|
+      film_genres = film.genre.split(',')
+      film_genres.each do |genre|
+        all_genres << genre
+      end
+    end
+
+    all_genres.uniq!
   end
 
   def parse_films(url)
