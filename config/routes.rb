@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   get '/get_films', to: 'films#get_films'
+
+  get '/destroy_films', to: 'films#destroy_films'
 end

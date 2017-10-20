@@ -10,6 +10,18 @@
 </div>
 
 <div class="row">
+  <div class=col-md-6>
+    <% if policy(Film).get_films? %>
+      <%= link_to 'Обновить фильмы', get_films_path, class: 'btn btn-primary' %>
+    <% end %>
+
+    <% if policy(Film).destroy_films? %>
+      <%= link_to 'Удалить все фильмы', destroy_films_path, class: 'btn btn-danger', data: {confirm: 'Точно удалить все фильмы?'} %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-12">
     <h3>Что смотрел:</h3>
     <%= render partial: 'films/film', collection: @user.films %>

@@ -2,6 +2,8 @@ class FilmsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_film, only: [:show]
 
+  after_action :verify_authorized, only: [:get_films, :destroy_all]
+
   def index
     @films = Film.all
   end
@@ -12,6 +14,8 @@ class FilmsController < ApplicationController
   end
 
   def get_films
+    authorize Film
+
     url = 'https://www.kinopoisk.ru/top/lists/1/filtr/all/sort/order/page/'
 
     films = []
@@ -38,6 +42,14 @@ class FilmsController < ApplicationController
     end
 
     @films_count = films.count
+
+    redirect_to root_path
+  end
+
+  def destroy_films
+    authorize Film
+
+    Film.destroy_all
 
     redirect_to root_path
   end
