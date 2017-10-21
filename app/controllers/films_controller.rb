@@ -2,7 +2,7 @@ class FilmsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_film, only: [:show]
 
-  after_action :verify_authorized, only: [:get_films, :destroy_all]
+  after_action :verify_authorized, only: [:get_films, :destroy_films]
 
   def index
     @films = Film.all
