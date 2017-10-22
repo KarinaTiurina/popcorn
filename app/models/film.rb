@@ -15,6 +15,5 @@ class Film < ApplicationRecord
   validates :kinopoisk_id, uniqueness: true
   validates :genre, presence: true
 
-
   mount_uploader :poster, PosterUploader
 end
