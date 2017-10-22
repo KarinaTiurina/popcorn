@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap-multiselect
 //= require_tree .
+
+$(document).ready(function() {
+    $('#genres').multiselect({
+    	includeSelectAllOption: true,
+        selectAllText: 'Выбрать все',
+        nonSelectedText: 'Ничего не выбрано',
+        allSelectedText: 'Все выбрано'
+    });
+});

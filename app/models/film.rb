@@ -1,6 +1,6 @@
 class Film < ApplicationRecord
   include PgSearch
-  pg_search_scope :search, against: [:title, :director, :year],
+  pg_search_scope :search, against: [:genre],
                   using: {tsearch: {dictionary: "russian"}}
 
   has_many :comments, dependent: :destroy

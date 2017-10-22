@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-multiselect
  */
 
  .logo-img {
@@ -46,6 +47,14 @@
     margin-bottom: 20px;
 }
 
+.buffer-left {
+    margin-left: 20px;
+}
+
+.buffer-right {
+    margin-right: 20px;
+}
+
 .user-avatar .img-icon {
     margin-top: -2px;
     height: 20px;
@@ -53,4 +62,8 @@
 
 .user_icon {
     height: 20px;
+}
+
+.genre_form {
+    width: 100%;
 }
