@@ -5,7 +5,11 @@ class FilmsController < ApplicationController
   after_action :verify_authorized, only: [:get_films, :destroy_films]
 
   def index
+    @selected_genres = params[:selected]
+
     @films = Film.all
+
+    @all_genres = genres(@films)
   end
 
   def show
@@ -64,15 +68,13 @@ class FilmsController < ApplicationController
     params.require(:event).permit(:title, :director, :year, :poster, :kinopoisk_id)
   end
 
-  def genres
+  def genres(films)
     all_genres = []
-
-    films = Film.all
 
     films.each do |film|
       film_genres = film.genre.split(',')
       film_genres.each do |genre|
-        all_genres << genre
+        all_genres << { id: genre, name: genre}
       end
     end
 

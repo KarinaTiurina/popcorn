@@ -1,3 +1,21 @@
+
+<div class="row">
+  <div class="col-md-8">
+    <form class="navbar-form navbar-left">
+      <%= form_tag root_path, :method => :get do  |query|%>
+        <div class="input-group">
+
+
+       <%= select_tag :selected, options_for_select(@all_genres.collect{|u| [u[:id],u[:name]]}),{:id=>'genres',:multiple=>'multiple'}%>
+
+
+          <button class="btn btn-success" type="submit">СЛУЧАЙНЫЙ ФИЛЬМ</button>
+        </div>
+      <% end %>
+    </form>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="text-center">
@@ -5,6 +23,7 @@
     </div>
   </div>
 </div>
+
 
 <h1>Фильмы</h1>
 
