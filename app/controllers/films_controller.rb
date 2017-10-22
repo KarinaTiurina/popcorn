@@ -5,7 +5,7 @@ class FilmsController < ApplicationController
   after_action :verify_authorized, only: [:get_films, :destroy_films]
 
   def index
-    @films = Film.all
+    @films = Film.all.to_a
     @selected_genres = []
 
     if params[:selected_g].present?
@@ -16,9 +16,13 @@ class FilmsController < ApplicationController
         suitable_films += Film.search(genre)
       end
 
+      delete_watched(suitable_films)
+
       @random_film = suitable_films.sample
     else
-      @random_film = @films.sample
+      s_films = @films
+      delete_watched(s_films)
+      @random_film = s_films.sample
     end
 
     @all_genres = genres(@films)
@@ -91,6 +95,17 @@ class FilmsController < ApplicationController
     end
 
     all_genres.uniq!
+  end
+
+  def delete_watched(films)
+    if current_user.present?
+      films.delete_if { |film| film.users.include?(current_user) }
+      # films.each do |film|
+      #   if film.users.include?(current_user)
+      #     films.delete(film)
+      #   end
+      # end
+    end
   end
 
   def parse_films(url)
