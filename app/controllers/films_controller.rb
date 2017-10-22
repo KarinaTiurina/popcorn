@@ -6,6 +6,22 @@ class FilmsController < ApplicationController
 
   def index
     @films = Film.all
+    @selected_genres = []
+
+    if params[:selected_g].present?
+      @selected_genres = params[:selected_g]
+
+      suitable_films = []
+      @selected_genres.each do |genre|
+        suitable_films += Film.search(genre)
+      end
+
+      @random_film = suitable_films.sample
+    else
+      @random_film = @films.sample
+    end
+
+    @all_genres = genres(@films)
   end
 
   def show
@@ -64,15 +80,13 @@ class FilmsController < ApplicationController
     params.require(:event).permit(:title, :director, :year, :poster, :kinopoisk_id)
   end
 
-  def genres
+  def genres(films)
     all_genres = []
-
-    films = Film.all
 
     films.each do |film|
       film_genres = film.genre.split(',')
       film_genres.each do |genre|
-        all_genres << genre
+        all_genres << { id: genre, name: genre}
       end
     end
 
