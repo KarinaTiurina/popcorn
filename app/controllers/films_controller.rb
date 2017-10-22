@@ -6,12 +6,13 @@ class FilmsController < ApplicationController
 
   def index
     @films = Film.all
+    @selected_genres = []
 
-    if params[:selected].present?
-      selected_genres = params[:selected]
+    if params[:selected_g].present?
+      @selected_genres = params[:selected_g]
 
       suitable_films = []
-      selected_genres.each do |genre|
+      @selected_genres.each do |genre|
         suitable_films += Film.search(genre)
       end
 

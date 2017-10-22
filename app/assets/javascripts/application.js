@@ -17,5 +17,10 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $('#genres').multiselect();
+    $('#genres').multiselect({
+    	includeSelectAllOption: true,
+        selectAllText: 'Выбрать все',
+        nonSelectedText: 'Ничего не выбрано',
+        allSelectedText: 'Все выбрано'
+    });
 });
