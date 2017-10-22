@@ -5,9 +5,20 @@ class FilmsController < ApplicationController
   after_action :verify_authorized, only: [:get_films, :destroy_films]
 
   def index
-    @selected_genres = params[:selected]
-
     @films = Film.all
+
+    if params[:selected].present?
+      selected_genres = params[:selected]
+
+      suitable_films = []
+      selected_genres.each do |genre|
+        suitable_films += Film.search(genre)
+      end
+
+      @random_film = suitable_films.sample
+    else
+      @random_film = @films.sample
+    end
 
     @all_genres = genres(@films)
   end
