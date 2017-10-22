@@ -35,7 +35,7 @@ class FilmsController < ApplicationController
     url = 'https://www.kinopoisk.ru/top/lists/1/filtr/all/sort/order/page/'
 
     films = []
-    1.upto(4) do |i|
+    1.upto(20) do |i|
       films += parse_films(url + i.to_s)
     end
 
