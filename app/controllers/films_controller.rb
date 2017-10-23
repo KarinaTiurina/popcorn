@@ -25,12 +25,15 @@ class FilmsController < ApplicationController
       @random_film = s_films.sample
     end
 
+    @trailer = trailer(@random_film)
+
     @all_genres = genres(@films)
   end
 
   def show
     @new_film_user = @film.film_users.build(params[:film_user])
     @new_comment = @film.comments.build(params[:comment])
+    @trailer = trailer(@film)
   end
 
   def get_films
@@ -131,5 +134,24 @@ class FilmsController < ApplicationController
       film[:poster_url] = poster_url
       film
     end
+  end
+
+  def trailer(film)
+    url = "https://www.youtube.com/results?search_query="
+    title_s = film.title.split(' ')
+    title_s.each do |word|
+      word.gsub!('ё', 'е')
+      word.gsub!('Ё', 'Е')
+      word.gsub!('ю', 'у')
+      word.gsub!('Ю', 'У')
+      url += Translit.convert(word) + "+"
+    end
+    url += film.year.to_s + "+trailer"
+    doc = Nokogiri::HTML(open(url))
+
+    node =  doc.css('h3 a').first
+    return "https://www.youtube.com/embed/" +
+                node["href"].gsub('/watch?v=', '') +
+                "?rel=0"
   end
 end

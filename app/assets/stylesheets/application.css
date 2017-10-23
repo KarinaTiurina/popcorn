@@ -38,6 +38,10 @@
     margin-top: 20px;
 }
 
+.buffer-top-large {
+    margin-top: 50px;
+}
+
 .buffer-bottom {
     margin-bottom: 20px;
 }
@@ -66,4 +70,8 @@
 
 .genre_form {
     width: 100%;
+}
+
+.show-poster {
+    margin-top: 35px;
 }

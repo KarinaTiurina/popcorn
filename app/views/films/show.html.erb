@@ -1,6 +1,12 @@
 <div class="row">
+  <div class="col-md-12">
+    <h1 class="buffer-bottom"><%= @film.title %></h1>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-4">
-    <p><%= image_tag film_poster(@film) %></p>
+    <p><%= image_tag film_poster(@film)%></p>
     <% if user_signed_in? %>
       <% unless @film.users.include?(current_user) %>
         <%= render partial: 'film_users/form', locals: {
@@ -8,12 +14,12 @@
                 } %>
       <% end %>
     <% end %>
-  </div>
-  <div class="col-md-8">
-    <h1><%= @film.title %></h1>
     <p>Жанр: <%= @film.genre %></p>
     <p>Режиссер: <%= @film.director %></p>
     <p>Год: <%= @film.year %></p>
+  </div>
+  <div class="col-md-8">
+    <iframe width="560" height="315" src=<%= @trailer %> frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
