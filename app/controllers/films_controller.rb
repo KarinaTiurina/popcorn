@@ -138,15 +138,10 @@ class FilmsController < ApplicationController
 
   def trailer(film)
     url = "https://www.youtube.com/results?search_query="
-    title_s = film.title.split(' ')
-    title_s.each do |word|
-      word.gsub!('ё', 'е')
-      word.gsub!('Ё', 'Е')
-      word.gsub!('ю', 'у')
-      word.gsub!('Ю', 'У')
-      url += Translit.convert(word) + "+"
-    end
-    url += film.year.to_s + "+trailer"
+    url += film.title.gsub(' ', '+') + "+" + film.year.to_s +
+            "+трейлер+на+русском"
+    url = URI::encode(url)
+
     doc = Nokogiri::HTML(open(url))
 
     node =  doc.css('h3 a').first
