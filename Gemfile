@@ -59,3 +59,5 @@ gem 'rmagick'
 gem 'fog-aws'
 
 gem 'pundit', '~> 1.1'
+
+gem 'translit'
