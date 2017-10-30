@@ -103,11 +103,6 @@ class FilmsController < ApplicationController
   def delete_watched(films)
     if current_user.present?
       films.delete_if { |film| film.users.include?(current_user) }
-      # films.each do |film|
-      #   if film.users.include?(current_user)
-      #     films.delete(film)
-      #   end
-      # end
     end
   end
 

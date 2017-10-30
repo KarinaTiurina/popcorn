@@ -6,9 +6,9 @@ class FilmUsersController < ApplicationController
     @new_film_user.user = current_user
 
     if @new_film_user.save
-     redirect_to @film, notice: 'film_user created'
+     redirect_to @film, notice: I18n.t('controllers.film_user.created')
     else
-      render 'films/index', alert: 'error create film_user'
+      render 'films/index', alert: I18n.t('controllers.film_user.error')
     end
   end
 

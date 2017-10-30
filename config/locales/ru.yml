@@ -1,0 +1,55 @@
+ru:
+  activerecord:
+    models:
+      user: 'Пользователь'
+      film: 'Фильм'
+      film_user: 'Фильм'
+      comment: 'Комментарий'
+
+    attributes:
+      user:
+        email: 'Email'
+        name: 'Имя'
+        avatar: 'Аватарка'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+      film:
+        title: 'Название'
+        director: 'Режиссер'
+        year: 'Год'
+        poster: 'Постер'
+        genre: 'Жанр'
+      comment:
+        body: 'Комментарий'
+        user_name: 'Имя'
+
+  controllers:
+    films:
+      created: 'Вы создали новое мероприятие'
+      updated: 'Вы обновили мероприятие'
+      destroyed: 'Вы удалили мероприятие :('
+      wrong_pincode: 'Неверный пин-код!'
+    users:
+      updated: 'Вы обновили свой профиль'
+    comments:
+      destroyed: 'Комментарий удален'
+      created: 'Ваш комментарий добавлен'
+      error: 'Ошибка с комментарием'
+    film_user:
+      created: 'Фильм добавлен в просмотренные'
+      error: 'Ошибка добавления фильма в просмотренные'
+
+  app:
+    name: 'Шашлыки'
+    company: 'KarinaTiurina'
+
+  comments:
+    comment:
+      destroy_confirm: 'Вы уверены, что хотите удалить этот комменатрий?'
+
+  are_you_sure: 'Вы уверены?'
+
+  error:
+    one: 'ошибка'
+    few: 'ошибки'
+    many: 'ошибок'
