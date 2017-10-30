@@ -1,0 +1,37 @@
+<h2>Измените ваш пароль</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <% unless resource.errors.empty?%>
+      <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= devise_error_messages! %>
+      </div>
+  <% end %>
+
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="form-group">
+    <%= f.label 'Новый пароль' %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> знаков минимум)</em>
+    <% end %><br />
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+      <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Подтверждение нового пароля' %><br />
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="actions buffer-bottom">
+    <%= f.submit "Изменить пароль", class: 'btn btn-primary'%>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
