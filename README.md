@@ -1,24 +1,15 @@
-# README
+# Приложение Popcorn
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Помогает выбрать фильм для просмотра (предлагает случайный)
 
-Things you may want to cover:
+Приложение написано с помощью `rails 5.1.4`.
 
-* Ruby version
+Для запуска:
 
-* System dependencies
+```
+bundle exec rails db:migrate
+bundle exec rails s
 
-* Configuration
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Посмотреть приложение можно [здесь](http://popcorn.ru.com/)
