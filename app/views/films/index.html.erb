@@ -13,11 +13,19 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4">
-    <%= render partial: 'films/film', object: @random_film %>
+  <div class="col-md-12">
+    <h3><%= link_to (@random_film.title + " (" + @random_film.year.to_s + ")"), film_path(@random_film) %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 buffer-top">
+    <p><%= link_to image_tag(film_poster(@random_film)), film_path(@random_film) %></p>
+    <p>Режиссер: <%= @random_film.director %></p>
+    <p>Жанр: <%= @random_film.genre %></p>
   </div>
   <div class="col-md-8">
-    <iframe class="buffer-top-large" width="560" height="315" src=<%= @trailer %> frameborder="0" allowfullscreen></iframe>
+    <iframe class="buffer-top" width="85%" height="315" src=<%= @trailer %> frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
