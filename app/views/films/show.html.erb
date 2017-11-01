@@ -27,7 +27,9 @@
   <div class="col-md-8">
     <div class="film-comments buffer-top">
 
-    <%= render partial: 'comments/form', locals: {comment: @new_comment || @film.comments.build} %>
+    <% if user_signed_in? %>
+      <%= render partial: 'comments/form', locals: {comment: @new_comment || @film.comments.build} %>
+    <% end %>
 
       <div class="buffer-both">
         <%= render partial: 'comments/comment', collection: @film.comments.except(@new_comment) %>
